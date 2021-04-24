@@ -7,7 +7,7 @@ GitHub Pages compatible transcription templates (furigana) without plugins or Ja
 1. Download the `furigana.html` file from [the master branch](/furigana.html).
 2. Move file to your `_includes` folder.
 3. Like the code below, use this template:
-zhen
+
 ```liquid
 {% include furigana.html text="测试" furigana="test" %}
 ```
