@@ -1,0 +1,80 @@
+{% capture furigana_workspace %}
+    {% comment %}
+        MIT License
+    
+        Copyright (c) 2021 gledos
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+    {% endcomment %}
+    {% comment %}
+        Version 0.1.0
+          https://github.com/gledos/jekyll-furigana
+
+        Liquid 真的是相当完备，简单的文字处理基本都可以实现，这个模板主要功能是标音(Phonetic)
+
+        由于 <rtc> <rb> 标签浏览器支持度不全，所以本 Liquid 模板所实现的注音不会包含这两个标签
+
+        Usage / 使用方法:
+            {% include furigana.html text="测试" furigana="test" %}
+
+        You can freely modify this template to any name, such as ruby.html etc. 
+        你可以自由的修改本模板为任意名称，比如 ruby.html、yinbiao.html、zhuyin.html 等等
+
+        Parameters / 必要参数:
+            * text          (string) : "no_text"     - Text in Kana or Chinese characters to be annotated
+                                                     - 需要用旁注标记标注的文字
+            * furigana      (string) : "no_furigana" - Hiragana, romanization or other transcription; shown above the Base text
+                                                     - 文字上方的注音
+
+        Optional Parameters / 可选参数:
+            * class         (string) : "default"     - a CSS class to the furigana
+                                       "big"         - Enlarge the text by 150%. / 将文字放大 150%
+                                       "bigger"      - Enlarge the text by 200%. / 将文字放大 200%
+                                       "large"       - Enlarge the text by 250%. / 将文字放大 250%
+                                       "larger"      - Enlarge the text by 300%. / 将文字放大 300%
+
+        Output:
+            根据显示效果的需求，需要留意前后空格
+    {% endcomment %}
+
+    {% capture jekyll_furigana %}{% endcapture %}
+    {% assign ruby_text = include.text | default: "no_text" %}
+    {% assign ruby_furigana = include.furigana | default: "no_furigana" %}
+    {% assign css_class = include.class | default: "ruby_null" %}
+    {% assign loop_num = 0 %}
+    {% capture l-bracket %}<rp>(</rp><rt>{% endcapture %}
+    {% capture r-bracket %}</rt><rp>)</rp>{% endcapture %}
+
+    {% if ruby_furigana contains ',' %}
+        {% assign ruby_furigana_list = ruby_furigana | split: ',' %}
+        {% if ruby_text contains ',' %}
+            {% assign ruby_text_list = ruby_text | split: ',' %}
+            {%- capture jekyll_furigana -%}<ruby class=ruby_{{ css_class }}>{% endcapture %}
+            {% for ruby_text_list in ruby_text_list %}
+                {%- capture jekyll_furigana -%}{{ jekyll_furigana }}{{ ruby_text_list }}{{ l-bracket }}{{ ruby_furigana_list | slice: loop_num }}{{ r-bracket }}{% endcapture %}
+                {% assign loop_num = loop_num | plus:1 %}
+            {% endfor}
+        {% else %}
+            {%- capture jekyll_furigana -%}{{ ruby_text }}<!--错误，需要文字与注音都使用数组的表示方式-->{% endcapture %}
+        {% endif %}
+    {% else %}
+        {%- capture jekyll_furigana -%}<ruby class=ruby_{{ css_class }}>{{ ruby_text }}{{ l-bracket }}{{ ruby_furigana }}{{ r-bracket }}</ruby>{% endcapture %}
+    {% endif %}
+
+{% endcapture %}{% assign furigana_workspace = "" %}{{- jekyll_furigana -}}
