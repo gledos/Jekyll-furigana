@@ -53,28 +53,16 @@
             根据显示效果的需求，需要留意前后空格
     {% endcomment %}
 
-    {% capture jekyll_furigana %}{% endcapture %}
     {% assign ruby_text = include.text | default: "no_text" %}
     {% assign ruby_furigana = include.furigana | default: "no_furigana" %}
-    {% assign css_class = include.class | default: "ruby_null" %}
+    {% assign css_class = include.class | default: "null" %}
     {% assign loop_num = 0 %}
-    {% capture l-bracket %}<rp>(</rp><rt>{% endcapture %}
-    {% capture r-bracket %}</rt><rp>)</rp>{% endcapture %}
+    {% capture l_bracket %}<rp>(</rp><rt>{% endcapture %}
+    {% capture r_bracket %}</rt><rp>)</rp>{% endcapture %}
+    {% assign ruby_furigana_list = ruby_furigana | split: ',' %}
 
-    {% if ruby_furigana contains ',' %}
-        {% assign ruby_furigana_list = ruby_furigana | split: ',' %}
-        {% if ruby_text contains ',' %}
-            {% assign ruby_text_list = ruby_text | split: ',' %}
-            {%- capture jekyll_furigana -%}<ruby class=ruby_{{ css_class }}>{% endcapture %}
-            {% for ruby_text_list in ruby_text_list %}
-                {%- capture jekyll_furigana -%}{{ jekyll_furigana }}{{ ruby_text_list }}{{ l-bracket }}{{ ruby_furigana_list | slice: loop_num }}{{ r-bracket }}{% endcapture %}
-                {% assign loop_num = loop_num | plus:1 %}
-            {% endfor}
-        {% else %}
-            {%- capture jekyll_furigana -%}{{ ruby_text }}<!--错误，需要文字与注音都使用数组的表示方式-->{% endcapture %}
-        {% endif %}
-    {% else %}
-        {%- capture jekyll_furigana -%}<ruby class=ruby_{{ css_class }}>{{ ruby_text }}{{ l-bracket }}{{ ruby_furigana }}{{ r-bracket }}</ruby>{% endcapture %}
-    {% endif %}
+    {% capture jekyll_furigana %}<ruby class=ruby_{{ css_class }}>{% endcapture %}
+    {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text }}{{ l_bracket }}{{ ruby_furigana }}{{ r_bracket }}{% endcapture %}
+    {% capture jekyll_furigana %}{{ jekyll_furigana }}</ruby>{% endcapture %}
 
-{% endcapture %}{% assign furigana_workspace = "" %}{{- jekyll_furigana -}}
+{% endcapture %}{% assign furigana_workspace = "" %}{{ jekyll_furigana }}
