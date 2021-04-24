@@ -59,8 +59,7 @@
     {% assign loop_num = 0 %}
     {% capture l_bracket %}<rp>(</rp><rt>{% endcapture %}
     {% capture r_bracket %}</rt><rp>)</rp>{% endcapture %}
-    {% assign ruby_furigana_list = ruby_furigana | split: ',' %}
-
+    
     {% capture jekyll_furigana %}<ruby class=ruby_{{ css_class }}>{% endcapture %}
     {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text }}{{ l_bracket }}{{ ruby_furigana }}{{ r_bracket }}{% endcapture %}
     {% capture jekyll_furigana %}{{ jekyll_furigana }}</ruby>{% endcapture %}

@@ -26,11 +26,11 @@
 // {% if ruby_furigana_list.size > 1 %}
 // {% assign ruby_text_list = ruby_text | split: ',' %}
 // {% for item in ruby_furigana_list %}
-    // {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text_list | slice: loop_num }}{{ l_bracket }}{{ ruby_furigana_list | slice: loop_num }}{{ r_bracket }}{% endcapture %}
-    // {% assign loop_num = loop_num | plus:1 %}
+//     {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text_list | slice: loop_num }}{{ l_bracket }}{{ ruby_furigana_list | slice: loop_num }}{{ r_bracket }}{% endcapture %}
+//     {% assign loop_num = loop_num | plus:1 %}
 // {% endfor}
 // {% else %}
-// {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text }}{{ l_bracket }}{{ ruby_furigana }}{{ r_bracket }}{% endcapture %}
+//     {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text }}{{ l_bracket }}{{ ruby_furigana }}{{ r_bracket }}{% endcapture %}
 // {% endif %}
 
 
