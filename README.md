@@ -1,9 +1,9 @@
 # Jekyll-furigana
 
 [![Latest release](https://img.shields.io/github/release/gledos/Jekyll-furigana.svg?style=flat-square&logo=github)](https://github.com/gledos/Jekyll-furigana/releases/latest)
-![license](https://img.shields.io/github/license/gledos/Jekyll-furigana?style=flat-square)
+![license](https://img.shields.io/github/license/gledos/Jekyll-furigana?style=flat-square&logo=Internet%20Archive)
 ![language](https://img.shields.io/badge/language-liquid-orange.svg?style=flat-square&logo=markdown)
-![made with <3](https://img.shields.io/badge/made%20with-%3C3-red.svg?style=flat-square&logo=githubsponsors)
+![made with <3](https://img.shields.io/badge/made%20with-%3C3-red.svg?style=flat-square&logo=github%20sponsors)
 
 GitHub Pages compatible transcription templates (furigana) without plugins or JavaScript, Use only liquid template language.
 
