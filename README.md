@@ -9,6 +9,10 @@ GitHub Pages compatible transcription templates (furigana) without plugins or Ja
 
 无需 jekyll 插件或 JavaScript 实现的 GitHub Pages 标音(furigana)效果，仅使用 liquid 模板语言
 
+> Want anchors next to your Jekyll headings without JavaScript or a plug-in?
+>
+> Check out the sister project over at [allejo/jekyll-anchor-headings](https://github.com/allejo/jekyll-anchor-headings) [allejo/jekyll-toc](https://github.com/allejo/jekyll-toc).
+
 ## Usage
 
 1. Download the `furigana.html` file from [the master branch](/furigana.html).
