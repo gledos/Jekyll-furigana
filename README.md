@@ -11,7 +11,7 @@ GitHub Pages compatible transcription templates (furigana) without plugins or Ja
 
 > Want anchors next to your Jekyll headings without JavaScript or a plug-in?
 >
-> Check out the sister project over at [allejo/jekyll-anchor-headings](https://github.com/allejo/jekyll-anchor-headings) [allejo/jekyll-toc](https://github.com/allejo/jekyll-toc).
+> Check out the sister project over at [allejo/jekyll-anchor-headings](https://github.com/allejo/jekyll-anchor-headings) [allejo/jekyll-toc](https://github.com/allejo/jekyll-toc)
 
 ## Usage
 
