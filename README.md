@@ -1,5 +1,8 @@
 # Jekyll-furigana
 
+[![Latest release](https://img.shields.io/github/release/gledos/Jekyll-furigana.svg)](https://github.com/gledos/Jekyll-furigana/releases/latest)
+![license](https://img.shields.io/github/license/gledos/Jekyll-furigana)
+
 GitHub Pages compatible transcription templates (furigana) without plugins or JavaScript.
 
 ## Usage
@@ -10,6 +13,7 @@ GitHub Pages compatible transcription templates (furigana) without plugins or Ja
 
 ```liquid
 {% include furigana.html text="测试" furigana="test" %}
+{% include furigana.html text="测,试" furigana="cè,shì" type="B" %}
 ```
 
 ## Parameters
@@ -24,7 +28,7 @@ This snippet is highly customizable. Here are the available parameters to change
 
 ## Performance
 
-The performance impact of this code snippet on your website is negligible. The following statistics are from Jekyll's `--profile` option. 
+The performance impact of this code snippet on your website is negligible. The following statistics are from Jekyll's `--profile` option.
 
 ```text
 | Filename                                   | Count |    Bytes |  Time |

@@ -23,11 +23,15 @@
         SOFTWARE.
     {% endcomment %}
     {% comment %}
-        Version 0.1.0
-          https://github.com/gledos/jekyll-furigana
+        Version 0.2.0
+            https://github.com/gledos/jekyll-furigana
 
+        Liquid is really quite complete, simple word processing can basically be achieved,
+        the main function of this template is Phonetic.
         Liquid 真的是相当完备，简单的文字处理基本都可以实现，这个模板主要功能是标音(Phonetic)
 
+        Due to the incomplete support of the <rtc> <rb> tag browser, the Zhuyin implemented by
+        this Liquid template will not include these two tags.
         由于 <rtc> <rb> 标签浏览器支持度不全，所以本 Liquid 模板所实现的注音不会包含这两个标签
 
         Usage / 使用方法:
@@ -43,25 +47,43 @@
                                                      - 文字上方的注音
 
         Optional Parameters / 可选参数:
-            * class         (string) : "default"     - a CSS class to the furigana
+            * class         (string) : "null"        - ruby_null CSS class
+                                       "default"     - a CSS class to the furigana
                                        "big"         - Enlarge the text by 150%. / 将文字放大 150%
                                        "bigger"      - Enlarge the text by 200%. / 将文字放大 200%
                                        "large"       - Enlarge the text by 250%. / 将文字放大 250%
                                        "larger"      - Enlarge the text by 300%. / 将文字放大 300%
+            * type          (string) : "A"           - single word single furigana
+                                       "B"           - more word more furigana
 
         Output:
-            根据显示效果的需求，需要留意前后空格
+            According to the needs of the display effect, you need to pay attention to the spaces before and after the template 
+            根据显示效果的需求，需要留意模板前后空格
     {% endcomment %}
 
     {% assign ruby_text = include.text | default: "no_text" %}
     {% assign ruby_furigana = include.furigana | default: "no_furigana" %}
     {% assign css_class = include.class | default: "null" %}
+    {% assign rubt_type = include.type | default: "A" %}
     {% assign loop_num = 0 %}
     {% capture l_bracket %}<rp>(</rp><rt>{% endcapture %}
     {% capture r_bracket %}</rt><rp>)</rp>{% endcapture %}
     
     {% capture jekyll_furigana %}<ruby class=ruby_{{ css_class }}>{% endcapture %}
-    {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text }}{{ l_bracket }}{{ ruby_furigana }}{{ r_bracket }}{% endcapture %}
-    {% capture jekyll_furigana %}{{ jekyll_furigana }}</ruby>{% endcapture %}
+
+    {% case rubt_type %}
+        {% when "A" %}
+            {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text }}{{ l_bracket }}{{ ruby_furigana }}{{ r_bracket }}{% endcapture %}
+            {% capture jekyll_furigana %}{{ jekyll_furigana }}</ruby>{% endcapture %}
+        {% when "B" %}
+            {% assign ruby_text_list = ruby_text | split: ',' %}
+            {% assign ruby_furigana_list = ruby_furigana | split: ',' %}
+            {% for item in ruby_furigana_list %}
+                {% capture jekyll_furigana %}{{ jekyll_furigana }}{{ ruby_text_list | slice: loop_num }}{{ l_bracket }}{{ ruby_furigana_list | slice: loop_num }}{{ r_bracket }}{% endcapture %}
+                {% assign loop_num = loop_num | plus:1 %}
+            {% endfor}
+        {% else %}
+            {% capture jekyll_furigana %}type error{% endcapture %}
+    {% endcase %}
 
 {% endcapture %}{% assign furigana_workspace = "" %}{{ jekyll_furigana }}
