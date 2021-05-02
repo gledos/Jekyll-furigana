@@ -1,9 +1,13 @@
 # Jekyll-furigana
 
-[![Latest release](https://img.shields.io/github/release/gledos/Jekyll-furigana.svg)](https://github.com/gledos/Jekyll-furigana/releases/latest)
-![license](https://img.shields.io/github/license/gledos/Jekyll-furigana)
+[![Latest release](https://img.shields.io/github/release/gledos/Jekyll-furigana.svg?style=flat-square&logo=github)](https://github.com/gledos/Jekyll-furigana/releases/latest)
+![license](https://img.shields.io/github/license/gledos/Jekyll-furigana?style=flat-square)
+![language](https://img.shields.io/badge/language-liquid-orange.svg?style=flat-square&logo=markdown)
+![made with <3](https://img.shields.io/badge/made%20with-%3C3-red.svg?style=flat-square&logo=githubsponsors)
 
-GitHub Pages compatible transcription templates (furigana) without plugins or JavaScript.
+GitHub Pages compatible transcription templates (furigana) without plugins or JavaScript, Use only liquid template language.
+
+无需 jekyll 插件或 JavaScript 实现的 GitHub Pages 标音(furigana)效果，仅使用 liquid 模板语言
 
 ## Usage
 
@@ -25,6 +29,8 @@ This snippet is highly customizable. Here are the available parameters to change
 | `text`     | string |   "no_text"   | Text in Kana or Chinese characters to be annotated                       |
 | `furigana` | string | "no_furigana" | Hiragana, romanization or other transcription; shown above the Base text |
 | `class`    | string |    "null"     | a CSS class to the <ruby> tag                                            |
+| `type`     | string |      "A"      | single word single furigana                                              |
+|            |        |               | when input "B": more word more furigana                                  |
 
 ## Performance
 
