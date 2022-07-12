@@ -7,7 +7,7 @@
 
 GitHub Pages compatible transcription templates (furigana) without plugins or JavaScript, Use only liquid template language.
 
-无需 jekyll 插件或 JavaScript 实现的 GitHub Pages 标音(furigana)效果，仅使用 liquid 模板语言
+无需 jekyll 插件或 JavaScript 实现的 GitHub Pages 注音效果，仅使用 liquid 模板语言
 
 > Want anchors next to your Jekyll headings without JavaScript or a plug-in?
 >
@@ -20,6 +20,9 @@ GitHub Pages compatible transcription templates (furigana) without plugins or Ja
 3. Like the code below, use this template:
 
 ```liquid
+{% include furigana.html text="漢字" furigana="かんじ" %}
+{% include furigana.html text="漢,字" furigana="かん,じ" type="B" %}
+
 {% include furigana.html text="测试" furigana="test" %}
 {% include furigana.html text="测,试" furigana="cè,shì" type="B" %}
 ```
@@ -47,6 +50,10 @@ The performance impact of this code snippet on your website is negligible. The f
 # A total of 732 Phonetic in Version 0.1.0
 | _includes/furigana.html                    |   732 |   47.98K | 0.054 |
 ```
+
+## 命名问题
+
+关于为什么使用 furigana，还是因为这个词语相对更普遍，当然不只是可以用作日本汉字的标注假名使用，各种音标也能使用。
 
 ## License
 
